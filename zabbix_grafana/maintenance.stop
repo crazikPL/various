@@ -1,0 +1,8 @@
+SELECT
+  active_till as time_sec,
+  CONCAT(name, ' : ' , description) as text,
+FROM  maintenance
+WHERE
+  $__unixEpochFilter(active_till)
+ORDER BY  active_till ASC  
+LIMIT 100

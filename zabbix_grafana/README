@@ -1,0 +1,4 @@
+Use Zabbix maintenance periods to show as Grafana annotations?
+Create Zabbix MySQL datasource, and use it for two additional annotations: 
+- maintenance.start
+- maintenance.stop
