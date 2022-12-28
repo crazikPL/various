@@ -22,30 +22,43 @@
         value_template: "{{ state_attr('sensor.piec_all', 'curr')['mode'] }}"
       boilerpowerkw:
         value_template: "{{ state_attr('sensor.piec_all', 'curr')['boilerPowerKW']|round(1) }}"
+        unit_of_measurement: 'kW'
       fuellevel:
         value_template: "{{ state_attr('sensor.piec_all', 'curr')['fuelLevel'] }}"
+        unit_of_measurement: '%'
       fuelstream:
         value_template: "{{ state_attr('sensor.piec_all', 'curr')['fuelStream']|round(2) }}"
+        unit_of_measurement: 'kg/h'
       fanpower:
         value_template: "{{ state_attr('sensor.piec_all', 'curr')['fanPower']|round(0)}}"
+        unit_of_measurement: '%'
       flamepower:
         value_template: "{{ state_attr('sensor.piec_all', 'curr')['tempOpticalSensor']|round(0) }}"
+        unit_of_measurement: '%'
       tempexternalsensor:
         value_template: "{{ state_attr('sensor.piec_all', 'curr')['tempExternalSensor']|round(1) }}"
+        unit_of_measurement: '°C'
       tempkotlazadana:
         value_template: "{{ state_attr('sensor.piec_all', 'curr')['tempCOSet'] }}"
+        unit_of_measurement: '°C'
       tempkotla:
         value_template: "{{ state_attr('sensor.piec_all', 'curr')['tempCO']|round(1) }}"
+        unit_of_measurement: '°C'
       tempcwuset:
         value_template: "{{ state_attr('sensor.piec_all', 'curr')['tempCWUSet'] }}"
+        unit_of_measurement: '°C'
       tempcwu:
         value_template: "{{ state_attr('sensor.piec_all', 'curr')['tempCWU']|round(1) }}"
+        unit_of_measurement: '°C'
       tempcoset:
         value_template: "{{ state_attr('sensor.piec_all', 'curr')['mixerSetTemp1'] }}"
+        unit_of_measurement: '°C'
       tempco:
         value_template: "{{ state_attr('sensor.piec_all', 'curr')['mixerTemp1']|round(1) }}"
+        unit_of_measurement: '°C'
       tempfeeder:
         value_template: "{{ state_attr('sensor.piec_all', 'curr')['tempFeeder']|round(1) }}"
+        unit_of_measurement: '°C'
       pumpcoworks:
         value_template: "{{ state_attr('sensor.piec_all', 'curr')['pumpCOWorks'] }}"
       pumpcwuworks:
