@@ -1,0 +1,60 @@
+- alias: Rano CO przed CWU
+  trigger:
+    platform: time
+    at: "05:00:00"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.piec_priorytet_wody
+
+- alias: Wieczorem CWU przed CO
+  trigger:
+    platform: time
+    at: "18:00:00"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.piec_priorytet_wody
+
+# wyłączenie podbicia temp wody
+- alias: CWO Temp HOT end
+  trigger:
+    platform: time
+    at: "23:30:00"
+  condition: 
+    - condition: state
+      entity_id: switch.piec_set_cwo_hot
+      state: 'on'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.piec_set_cwo_hot
+
+
+
+# Wybierz swoje metody powiadomień
+- alias: Blad pieca
+  trigger:
+    platform: state
+    entity_id: sensor.mode
+    to: '8'
+  action: 
+#    - service: tts.google_say
+#      data:
+#        entity_id: media_player.all
+#        message: "Uwaga! Błąd pieca! Sprawdź koniecznie! Powtarzam: błąd pieca!"
+    - service: persistent_notification.create
+      data:
+        message: "Błąd pieca"
+        title: "PIEC"
+#    - service: notify.mobile_app_x
+#      data:
+#        message: "Błąd pieca"
+#        title: "PIEC"
+#    - service: notify.pushover
+#      data:
+#        title: "Błąd pieca"
+#        message: "PIEC"
+#        data:
+#          priority: 0
+#    - service: notify.email
+#      data:
+#        message: "Błąd pieca"
+#        title: "ALARM PIECA"

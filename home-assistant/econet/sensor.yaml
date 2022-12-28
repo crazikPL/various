@@ -1,0 +1,79 @@
+##################################
+# ecoNET300
+##################################
+  - platform: rest
+    name: piec_all
+    resource: !secret eco_url
+    authentication: basic
+    username: !secret eco_user
+    password: !secret eco_pass
+    json_attributes: curr
+    value_template: "OK"
+    scan_interval: 60
+    force_update: true
+    timeout: 30
+    headers:
+      User-Agent: Mozilla/5.0
+      Content-Type: application/json
+
+  - platform: template
+    sensors:
+      mode:
+        value_template: "{{ state_attr('sensor.piec_all', 'curr')['mode'] }}"
+      boilerpowerkw:
+        value_template: "{{ state_attr('sensor.piec_all', 'curr')['boilerPowerKW']|round(1) }}"
+      fuellevel:
+        value_template: "{{ state_attr('sensor.piec_all', 'curr')['fuelLevel'] }}"
+      fuelstream:
+        value_template: "{{ state_attr('sensor.piec_all', 'curr')['fuelStream']|round(2) }}"
+      fanpower:
+        value_template: "{{ state_attr('sensor.piec_all', 'curr')['fanPower']|round(0)}}"
+      flamepower:
+        value_template: "{{ state_attr('sensor.piec_all', 'curr')['tempOpticalSensor']|round(0) }}"
+      tempexternalsensor:
+        value_template: "{{ state_attr('sensor.piec_all', 'curr')['tempExternalSensor']|round(1) }}"
+      tempkotlazadana:
+        value_template: "{{ state_attr('sensor.piec_all', 'curr')['tempCOSet'] }}"
+      tempkotla:
+        value_template: "{{ state_attr('sensor.piec_all', 'curr')['tempCO']|round(1) }}"
+      tempcwuset:
+        value_template: "{{ state_attr('sensor.piec_all', 'curr')['tempCWUSet'] }}"
+      tempcwu:
+        value_template: "{{ state_attr('sensor.piec_all', 'curr')['tempCWU']|round(1) }}"
+      tempcoset:
+        value_template: "{{ state_attr('sensor.piec_all', 'curr')['mixerSetTemp1'] }}"
+      tempco:
+        value_template: "{{ state_attr('sensor.piec_all', 'curr')['mixerTemp1']|round(1) }}"
+      tempfeeder:
+        value_template: "{{ state_attr('sensor.piec_all', 'curr')['tempFeeder']|round(1) }}"
+      pumpcoworks:
+        value_template: "{{ state_attr('sensor.piec_all', 'curr')['pumpCOWorks'] }}"
+      pumpcwuworks:
+        value_template: "{{ state_attr('sensor.piec_all', 'curr')['pumpCWUWorks'] }}"
+      tryb_pracy_pieca:
+        friendly_name: "Tryb"
+        entity_id: sensor.mode
+        value_template: >-
+          {% if is_state('sensor.mode', '0') %}
+          Wyłączony
+          {% elif is_state('sensor.mode','1') %}
+          Zatrzymany
+          {% elif is_state('sensor.mode', '2') %}
+          Rozpalanie
+          {% elif is_state('sensor.mode','3') %}
+          Praca
+          {% elif is_state('sensor.mode','4') %}
+          Nadzór
+          {% elif is_state('sensor.mode','5') %}
+          Postój
+          {% elif is_state('sensor.mode','6') %}
+          Czyszczenie
+          {% elif is_state('sensor.mode','7') %}
+          Wygaszanie
+          {% elif is_state('sensor.mode','8') %}
+          ERROR
+          {% elif is_state('sensor.mode','12') %}
+          Stabilizacja
+          {% else %}
+          Nieznany
+          {% endif %}

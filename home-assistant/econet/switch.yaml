@@ -1,0 +1,21 @@
+  - platform: command_line
+    switches:
+# włączenie ogrzewania
+      piec_zima: 
+        command_on: !secret eco_piec_on
+        command_off: !secret eco_piec_off
+        command_state: !secret eco_statuses
+        value_template: '{{ value_json["data"]["AUTO_SUMMER"]["value"] | default(0) | int  == 0 }}'
+        friendly_name: Piec - ogrzewanie domu
+# jednorazowe podbicie temp wody do 60 (domyślnie 45)
+      piec_set_cwo_hot:
+        command_on: !secret eco_piec_cwo_hot_on
+        command_off: !secret eco_piec_cwo_hot_off
+        friendly_name: Piec - tryb Hot (60st)
+# zmiana priorytetu CO vs CWU
+      piec_priorytet_wody:
+        command_on: !secret eco_cwo_prior_on
+        command_off: !secret eco_cwo_prior_off
+        command_state: !secret eco_statuses
+        value_template: '{{ value_json["data"]["CWU_WORK_MODE"]["value"] | default(0) | int  == 1 }}'
+        friendly_name: Piec - priorytet grzania CWU

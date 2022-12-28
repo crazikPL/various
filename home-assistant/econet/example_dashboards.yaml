@@ -1,0 +1,222 @@
+####  MAIN PANEL
+
+type: vertical-stack
+cards:
+  - entities:
+      - entity: sensor.tryb_pracy_pieca
+      - entity: sensor.tempcwu
+        name: Woda
+      - entity: sensor.tempco
+        name: Ogrzewanie
+      - entity: sensor.tempkotla
+        name: Kocioł
+      - entity: sensor.fuellevel
+        name: Pellet
+    show_icon: true
+    show_name: true
+    type: glance
+    state_color: true
+    show_state: true
+    columns: 5
+
+##### SWITCHES
+entities:
+  - entity: switch.piec_zima
+    icon: mdi:radiator
+    name: Włączone ogrzewanie
+  - entity: switch.piec_set_cwo_hot
+    icon: mdi:water-pump
+    name: Ekstra gorąca woda
+  - entity: sensor.tempcwuset
+    name: CWU aktualne (z harmonogramem!)
+  - entity: switch.piec_priorytet_wody
+    icon: mdi:priority-high
+    name: Priorytetowe grzania wody
+show_header_toggle: false
+type: entities
+
+
+##### KARTA Z GRAFIKĄ
+type: picture-elements
+image: /local/piec_econet.png
+elements:
+  - entity: sensor.boilerpowerkw
+    show_state: true
+    show_name: false
+    show_icon: false
+    styles:
+      card:
+        - height: 50px
+        - background-color: rgba(0, 0, 0, 0.0)
+        - box-shadow: 0px 0px 0px 0px
+        - font-size: 1.2em
+        - font-weight: bold
+        - color: white
+    style:
+      left: 40%
+      top: 28%
+    type: custom:button-card
+  - entity: sensor.tempkotla
+    show_state: true
+    show_name: false
+    show_icon: false
+    styles:
+      card:
+        - height: 50px
+        - background-color: rgba(0, 0, 0, 0.0)
+        - box-shadow: 0px 0px 0px 0px
+        - font-size: 1.2em
+        - font-weight: bold
+        - color: white
+    style:
+      left: 40%
+      top: 58%
+    type: custom:button-card
+  - entity: sensor.flamepower
+    show_state: true
+    show_name: false
+    show_icon: false
+    styles:
+      card:
+        - height: 50px
+        - background-color: rgba(0, 0, 0, 0.0)
+        - box-shadow: 0px 0px 0px 0px
+        - font-size: 1.2em
+        - font-weight: bold
+        - color: white
+    style:
+      left: 40%
+      top: 82%
+    type: custom:button-card
+  - entity: sensor.fuelstream
+    show_state: true
+    show_name: false
+    show_icon: false
+    styles:
+      card:
+        - height: 50px
+        - background-color: rgba(0, 0, 0, 0.0)
+        - box-shadow: 0px 0px 0px 0px
+        - font-size: 1em
+        - font-weight: bold
+        - color: white
+    style:
+      left: 18%
+      top: 83%
+    type: custom:button-card
+  - entity: sensor.fanpower
+    show_state: true
+    show_name: false
+    show_icon: false
+    styles:
+      card:
+        - height: 50px
+        - background-color: rgba(0, 0, 0, 0.0)
+        - box-shadow: 0px 0px 0px 0px
+        - font-size: 1.2em
+        - font-weight: bold
+        - color: white
+    style:
+      left: 15%
+      top: 93%
+    type: custom:button-card
+  - entity: sensor.tempfeeder
+    show_state: true
+    show_name: false
+    show_icon: false
+    styles:
+      card:
+        - height: 50px
+        - background-color: rgba(0, 0, 0, 0.0)
+        - box-shadow: 0px 0px 0px 0px
+        - font-size: 1em
+        - font-weight: bold
+        - color: white
+    style:
+      left: 17%
+      top: 66%
+    type: custom:button-card
+  - entity: sensor.tempcwu
+    show_state: true
+    show_name: false
+    show_icon: false
+    styles:
+      card:
+        - height: 50px
+        - background-color: rgba(0, 0, 0, 0.0)
+        - box-shadow: 0px 0px 0px 0px
+        - font-size: 1.2em
+        - font-weight: bold
+        - color: black
+    style:
+      left: 87%
+      top: 79%
+    type: custom:button-card
+  - entity: sensor.tempco
+    show_state: true
+    show_name: false
+    show_icon: false
+    styles:
+      card:
+        - height: 50px
+        - background-color: rgba(0, 0, 0, 0.0)
+        - box-shadow: 0px 0px 0px 0px
+        - font-size: 1.2em
+        - font-weight: bold
+        - color: white
+    style:
+      left: 62%
+      top: 48%
+    type: custom:button-card
+  - entity: sensor.fuellevel
+    show_state: true
+    show_name: false
+    show_icon: false
+    styles:
+      card:
+        - height: 50px
+        - background-color: rgba(0, 0, 0, 0.0)
+        - box-shadow: 0px 0px 0px 0px
+        - font-size: 1.7em
+        - font-weight: bold
+        - color: white
+    style:
+      left: 18%
+      top: 39%
+    type: custom:button-card
+  - entity: sensor.tryb_pracy_pieca
+    show_state: true
+    show_name: false
+    show_icon: false
+    styles:
+      card:
+        - height: 80px
+        - background-color: rgba(0, 0, 0, 0.0)
+        - box-shadow: 0px 0px 0px 0px
+        - font-size: 1.9em
+        - font-weight: bold
+        - color: white
+    style:
+      left: 68%
+      top: 10%
+    type: custom:button-card
+  - entity: sensor.pumpcoworks
+    style:
+      height: 20%
+      left: 56%
+      top: 40%
+      width: 7%
+    type: image
+    state_image:
+      'True': /local/power_on.png
+      'False': /local/power_off.png
+  - entity: sensor.pumpcwuworks
+    style:
+      height: 20%
+      left: 66%
+      top: 83%
+      width: 7%
+    type: image
+    state_image:
+      'True': /local/power_on.png
+      'False': /local/power_off.png
